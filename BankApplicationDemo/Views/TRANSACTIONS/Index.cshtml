@@ -4,24 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Transactions</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionTime)
+            <h5>Transaction Time</h5>
         </th>
         <th>
-            <h5>Ammount Debited</h5>
+            <h5>Amount Debited</h5>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FromAccountBalance)
+            <h5>From Account Balance</h5>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ToAccountBalance)
+            <h5>To Account Balance</h5>
         </th>
         <th>
             <h5>From Account</h5>
