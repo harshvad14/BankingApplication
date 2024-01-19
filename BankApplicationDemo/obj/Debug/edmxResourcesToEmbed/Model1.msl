@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankingAppModelStoreContainer" CdmEntityContainer="BankingAppContext">
+    <EntitySetMapping Name="T_ACCOUNTS">
+      <EntityTypeMapping TypeName="BankingAppModel.T_ACCOUNTS">
+        <MappingFragment StoreEntitySet="T_ACCOUNTS">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TRANSACTIONS">
+      <EntityTypeMapping TypeName="BankingAppModel.T_TRANSACTIONS">
+        <MappingFragment StoreEntitySet="T_TRANSACTIONS">
+          <ScalarProperty Name="FromAccountID" ColumnName="FromAccountID" />
+          <ScalarProperty Name="ToAccountID" ColumnName="ToAccountID" />
+          <ScalarProperty Name="TransactionTime" ColumnName="TransactionTime" />
+          <ScalarProperty Name="TransactionAmout" ColumnName="TransactionAmout" />
+          <ScalarProperty Name="FromAccountBalance" ColumnName="FromAccountBalance" />
+          <ScalarProperty Name="ToAccountBalance" ColumnName="ToAccountBalance" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

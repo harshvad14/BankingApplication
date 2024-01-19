@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BankingAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_ACCOUNTS">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountBalance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_TRANSACTIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FromAccountID" Type="bigint" Nullable="false" />
+          <Property Name="ToAccountID" Type="bigint" Nullable="false" />
+          <Property Name="TransactionTime" Type="datetime" Nullable="false" />
+          <Property Name="TransactionAmout" Type="float" Nullable="false" />
+          <Property Name="FromAccountBalance" Type="float" Nullable="false" />
+          <Property Name="ToAccountBalance" Type="float" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS">
+          <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+          <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ACCOUNTS">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="T_TRANSACTIONS">
+              <PropertyRef Name="FromAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS1">
+          <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+          <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ACCOUNTS">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="T_TRANSACTIONS">
+              <PropertyRef Name="ToAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankingAppModelStoreContainer">
+          <EntitySet Name="T_ACCOUNTS" EntityType="Self.T_ACCOUNTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_TRANSACTIONS" EntityType="Self.T_TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS">
+            <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+            <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS1" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS1">
+            <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+            <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankingAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_ACCOUNTS">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="AccountBalance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="T_TRANSACTIONS" Relationship="Self.FK_T_TRANSACTIONS_T_ACCOUNTS" FromRole="T_ACCOUNTS" ToRole="T_TRANSACTIONS" />
+          <NavigationProperty Name="T_TRANSACTIONS1" Relationship="Self.FK_T_TRANSACTIONS_T_ACCOUNTS1" FromRole="T_ACCOUNTS" ToRole="T_TRANSACTIONS" />
+        </EntityType>
+        <EntityType Name="T_TRANSACTIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FromAccountID" Type="Int64" Nullable="false" />
+          <Property Name="ToAccountID" Type="Int64" Nullable="false" />
+          <Property Name="TransactionTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionAmout" Type="Double" Nullable="false" />
+          <Property Name="FromAccountBalance" Type="Double" Nullable="false" />
+          <Property Name="ToAccountBalance" Type="Double" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="T_ACCOUNTS" Relationship="Self.FK_T_TRANSACTIONS_T_ACCOUNTS" FromRole="T_TRANSACTIONS" ToRole="T_ACCOUNTS" />
+          <NavigationProperty Name="T_ACCOUNTS1" Relationship="Self.FK_T_TRANSACTIONS_T_ACCOUNTS1" FromRole="T_TRANSACTIONS" ToRole="T_ACCOUNTS" />
+        </EntityType>
+        <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS">
+          <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+          <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ACCOUNTS">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="T_TRANSACTIONS">
+              <PropertyRef Name="FromAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS1">
+          <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+          <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ACCOUNTS">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="T_TRANSACTIONS">
+              <PropertyRef Name="ToAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankingAppContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_ACCOUNTS" EntityType="Self.T_ACCOUNTS" />
+          <EntitySet Name="T_TRANSACTIONS" EntityType="Self.T_TRANSACTIONS" />
+          <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS">
+            <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+            <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS1" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS1">
+            <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+            <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankingAppModelStoreContainer" CdmEntityContainer="BankingAppContext">
+          <EntitySetMapping Name="T_ACCOUNTS">
+            <EntityTypeMapping TypeName="BankingAppModel.T_ACCOUNTS">
+              <MappingFragment StoreEntitySet="T_ACCOUNTS">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TRANSACTIONS">
+            <EntityTypeMapping TypeName="BankingAppModel.T_TRANSACTIONS">
+              <MappingFragment StoreEntitySet="T_TRANSACTIONS">
+                <ScalarProperty Name="FromAccountID" ColumnName="FromAccountID" />
+                <ScalarProperty Name="ToAccountID" ColumnName="ToAccountID" />
+                <ScalarProperty Name="TransactionTime" ColumnName="TransactionTime" />
+                <ScalarProperty Name="TransactionAmout" ColumnName="TransactionAmout" />
+                <ScalarProperty Name="FromAccountBalance" ColumnName="FromAccountBalance" />
+                <ScalarProperty Name="ToAccountBalance" ColumnName="ToAccountBalance" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

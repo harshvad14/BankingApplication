@@ -1,0 +1,66 @@
+﻿@model BankApplicationDemo.T_TRANSACTIONS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>T_TRANSACTIONS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionAmout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionAmout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromAccountBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromAccountBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToAccountBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToAccountBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_ACCOUNTS.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_ACCOUNTS.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_ACCOUNTS1.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_ACCOUNTS1.AccountName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankingAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="T_ACCOUNTS">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountName" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="AccountBalance" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_TRANSACTIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="FromAccountID" Type="bigint" Nullable="false" />
+    <Property Name="ToAccountID" Type="bigint" Nullable="false" />
+    <Property Name="TransactionTime" Type="datetime" Nullable="false" />
+    <Property Name="TransactionAmout" Type="float" Nullable="false" />
+    <Property Name="FromAccountBalance" Type="float" Nullable="false" />
+    <Property Name="ToAccountBalance" Type="float" Nullable="false" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS">
+    <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+    <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ACCOUNTS">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="T_TRANSACTIONS">
+        <PropertyRef Name="FromAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_TRANSACTIONS_T_ACCOUNTS1">
+    <End Role="T_ACCOUNTS" Type="Self.T_ACCOUNTS" Multiplicity="1" />
+    <End Role="T_TRANSACTIONS" Type="Self.T_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ACCOUNTS">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="T_TRANSACTIONS">
+        <PropertyRef Name="ToAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankingAppModelStoreContainer">
+    <EntitySet Name="T_ACCOUNTS" EntityType="Self.T_ACCOUNTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TRANSACTIONS" EntityType="Self.T_TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS">
+      <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+      <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_TRANSACTIONS_T_ACCOUNTS1" Association="Self.FK_T_TRANSACTIONS_T_ACCOUNTS1">
+      <End Role="T_ACCOUNTS" EntitySet="T_ACCOUNTS" />
+      <End Role="T_TRANSACTIONS" EntitySet="T_TRANSACTIONS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

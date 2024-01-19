@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BankApplicationDemo.T_TRANSACTIONS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionTime)
+        </th>
+        <th>
+            <h5>Ammount Debited</h5>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromAccountBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToAccountBalance)
+        </th>
+        <th>
+            <h5>From Account</h5>
+        </th>
+        <th>
+            <h5>To Account</h5>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionAmout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromAccountBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToAccountBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_ACCOUNTS.AccountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_ACCOUNTS1.AccountName)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            
+        </td>
+    </tr>
+}
+
+</table>
