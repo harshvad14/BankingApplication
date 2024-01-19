@@ -11,9 +11,7 @@ namespace BankApplicationDemo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class T_TRANSACTIONS
     {
         public long FromAccountID { get; set; }
@@ -23,10 +21,8 @@ namespace BankApplicationDemo
         public double FromAccountBalance { get; set; }
         public double ToAccountBalance { get; set; }
         public long ID { get; set; }
-        [DisplayName ("AA")]
+    
         public virtual T_ACCOUNTS T_ACCOUNTS { get; set; }
         public virtual T_ACCOUNTS T_ACCOUNTS1 { get; set; }
     }
-
-    
 }

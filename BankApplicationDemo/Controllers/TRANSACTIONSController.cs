@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -55,17 +56,25 @@ namespace BankApplicationDemo.Controllers
             {
                 var fromAccount = db.T_ACCOUNTS.Find(t_TRANSACTIONS.FromAccountID);
                 var toAccount = db.T_ACCOUNTS.Find(t_TRANSACTIONS.ToAccountID);
+                var fromAccountBal = fromAccount.AccountBalance;
+                var toAccountBal = toAccount.AccountBalance;
                 var amount = t_TRANSACTIONS.TransactionAmout;
                 t_TRANSACTIONS.FromAccountBalance = fromAccount.AccountBalance - amount;
                 t_TRANSACTIONS.ToAccountBalance = toAccount.AccountBalance + amount;
                 t_TRANSACTIONS.TransactionTime = DateTime.Now;
-                if(fromAccount.AccountBalance<=0 || fromAccount.AccountBalance < amount || t_TRANSACTIONS.ToAccountID == t_TRANSACTIONS.FromAccountID)
+                if(fromAccount.AccountBalance<=0 || amount >10000 || fromAccount.AccountBalance < amount || t_TRANSACTIONS.ToAccountID == t_TRANSACTIONS.FromAccountID)
                 {
                     return RedirectToAction("Index");
                 }
-                
+
                 db.T_TRANSACTIONS.Add(t_TRANSACTIONS);
+
+                fromAccount.AccountBalance = fromAccountBal - amount;
+                toAccount.AccountBalance = toAccountBal + amount;
+                db.T_ACCOUNTS.AddOrUpdate(fromAccount);
+                db.T_ACCOUNTS.AddOrUpdate(toAccount);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="544f571ac5144d94a9d193b0b2601460" Name="Diagram1">
-        <EntityTypeShape EntityType="BankingAppModel.T_ACCOUNTS" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BankingAppModel.T_TRANSACTIONS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingAppModel.T_ACCOUNTS" Width="2.125" PointX="0.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingAppModel.T_TRANSACTIONS" Width="2.75" PointX="3.125" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="BankingAppModel.FK_T_TRANSACTIONS_T_ACCOUNTS" ManuallyRouted="false" />
         <AssociationConnector Association="BankingAppModel.FK_T_TRANSACTIONS_T_ACCOUNTS1" ManuallyRouted="false" />
       </Diagram>
